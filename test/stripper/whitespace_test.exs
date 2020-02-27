@@ -32,4 +32,10 @@ defmodule Stripper.WhitespaceTest do
       assert {:ok, "x x"} = Stripper.Whitespace.normalize("x\n\nx")
     end
   end
+
+  describe "normalize!/1" do
+    test "foo bar" do
+        assert "foo bar" = Stripper.Whitespace.normalize!("foo\n\n\nbar")
+    end
+  end
 end

@@ -12,16 +12,8 @@ defmodule Stripper.MixProject do
       name: "Stripper",
       docs: [
         source_ref: "v#{@version}",
-        main: "overview",
-        logo: "logo.png",
-        extras: extras()
+        logo: "logo.png"
       ]
-    ]
-  end
-
-  def extras do
-    [
-      "docs/overview.md"
     ]
   end
 

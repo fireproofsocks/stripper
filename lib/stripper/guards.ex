@@ -1,18 +1,23 @@
 defmodule Stripper.Guards do
   @moduledoc """
-  This module defines guard clauses that can be used with Elixir functions.
+  This module defines guard clauses that are used internally by the `Stripper`
+  package but can be used with your own Elixir functions.
   """
 
   @doc """
-  Guards whether a UTF8 codepoint is a whitespace symbol character, including
-  tabs, newlines, and a bunch of other weird unicode characters you have
+  This guard checks whether a UTF8 codepoint represents any kind of space,
+  including tabs, newlines, and a bunch of other weird unicode characters you have
   never heard of.
 
+  Because this defines codepoints as numbers, it's important to use `::utf8`
+  pattern matching (instead of `::binary-size(1)` or other matching).
+
   ## Examples
+
       defmodule MyApp do
         import Stripper.Guards
 
-        def begins_with_whitespace?(<<head::utf8, _rest::binary>>) when is_whitespace(head) do
+        def starts_with_whitespace?(<<head::utf8, _rest::binary>>) when is_whitespace(head) do
           true
         end
       end
@@ -22,8 +27,6 @@ defmodule Stripper.Guards do
   package.
   """
   defguard is_whitespace(codepoint)
-           # tabs, newlines, line-feeds...
-           # \s ye olde regular space
            when codepoint in 9..13 or
                   codepoint == 32 or
                   codepoint == 160 or

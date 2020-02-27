@@ -3,7 +3,9 @@ defmodule Stripper.Parser.WhitespaceParser do
 
   # This houses private parse functions;
   # these are functions deal specifically with normalizing whitespace.
-  # Multiple Parser modules could be used to fulfill a single use-case.
+  # These implementations of `parse/1` are meant to be composable:
+  # multiple Parser modules could be mixed and matched to fulfill a complex
+  # use-case.
   defmacro __using__(_opts) do
     quote do
       import Stripper.Guards

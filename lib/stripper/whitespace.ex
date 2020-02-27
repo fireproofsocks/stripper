@@ -7,8 +7,9 @@ defmodule Stripper.Whitespace do
   This module exists for dealing with whitespace. A space is a space is a space,
   right? Wrong. There are multiple [unicode](https://home.unicode.org/)
   characters that represent whitespace: tabs, newlines, line-feeds, and a slew
-  of lesser known characters that are technically different entities but all of
-  which could be referred to as "space".
+  of [lesser-known characters](http://jkorpela.fi/chars/spaces.html) that are
+  technically different entities but all of which could be referred to as
+  "space".
 
   Sometimes, too many distinctions is a bad thing. A human might be able to read
   text peppered with a dozen different variations in space characters, but some
@@ -35,15 +36,14 @@ defmodule Stripper.Whitespace do
 
   @doc """
   Strip out any redundant spaces or other whitespace characters and normalize
-  them to simple spaces (`" "`). Multiple spaces all get collapsed down to one
-  space. Newlines, carriage returns, tabs, line-feeds et al all get replaced
+  them to simple spaces (i.e. `" "`). Multiple spaces all get collapsed down to
+  one space. Newlines, carriage returns, tabs, line-feeds et al all get replaced
   with a regular space character.
 
-  Functionally, this is equivalent to trimming the result of a regular
-  expression like the following:
+  Functionally, this is equivalent to something like the following:
 
       iex> value = "your value here"
-      iex> Regex.replace(~r/\\s+/, value, " ")
+      iex> String.trim(Regex.replace(~r/\\s+/u, value, " "))
 
 
   ## Examples
@@ -55,10 +55,12 @@ defmodule Stripper.Whitespace do
 
       iex> normalize!("foo\\n\\n\\nbar")
       "foo bar"
+
+      iex> normalize!("\\u2009unicode\\u2008space\\u2003")
+      "unicode space"
   """
   @spec normalize!(string :: String.t()) :: String.t()
   def normalize!(string) when is_binary(string) do
     parse(string, "", false)
   end
-
 end

@@ -8,7 +8,7 @@ defmodule Stripper.Parser.WhitespaceParser do
   # use-case.
   defmacro __using__(_opts) do
     quote do
-      import Stripper.Guards
+      import Unicode.Guards
 
       # End of input string: all done!
       defp parse("", acc, _in_space), do: acc

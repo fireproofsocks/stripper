@@ -35,7 +35,11 @@ defmodule Stripper.WhitespaceTest do
 
   describe "normalize!/1" do
     test "foo bar" do
-        assert "foo bar" = Stripper.Whitespace.normalize!("foo\n\n\nbar")
+      assert "foo bar" = Stripper.Whitespace.normalize!("foo\n\n\nbar")
+    end
+
+    test "cleans out unicode" do
+      assert "foo bar" = Stripper.Whitespace.normalize!("\u2009foo\u2008bar\u2003")
     end
   end
 end

@@ -9,6 +9,7 @@ defmodule Stripper do
   ## Use Cases
 
   - `Stripper.Whitespace` : for normalizing all kinds of whitespace and stripping it.
+  - `Stripper.Quotes` : for normalizing all kinds of quotes to their simplest equivalents: `"` and `'`.
 
   More planned...
 

@@ -11,12 +11,13 @@ defmodule Stripper.Whitespace do
   technically different entities but all of which could be referred to as
   "space".
 
-  Sometimes, too many distinctions is a bad thing. A human might be able to read
+  Sometimes, too many distinctions are a bad thing. A human might be able to read
   text peppered with a dozen different variations in space characters, but some
   processes may not. This module offers functions that strip away all the
   nonsense and leaves bare the simple spaces as nature intended.
   """
   use Stripper.Parser.WhitespaceParser
+  use Stripper.Parser.FallbackParser
 
   @doc """
   The `normalize/1` function works the same way as the `normalize!/1` function
@@ -31,7 +32,7 @@ defmodule Stripper.Whitespace do
   """
   @spec normalize(string :: String.t()) :: {:ok, String.t()}
   def normalize(string) when is_binary(string) do
-    {:ok, parse(string, "", false)}
+    {:ok, parse(string, "", %{in_space: false})}
   end
 
   @doc """
@@ -61,6 +62,6 @@ defmodule Stripper.Whitespace do
   """
   @spec normalize!(string :: String.t()) :: String.t()
   def normalize!(string) when is_binary(string) do
-    parse(string, "", false)
+    parse(string, "", %{in_space: false})
   end
 end

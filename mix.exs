@@ -1,7 +1,7 @@
 defmodule Stripper.MixProject do
   use Mix.Project
 
-  @version "1.0.0"
+  @version "1.1.0"
 
   def project do
     [
@@ -48,7 +48,7 @@ defmodule Stripper.MixProject do
 
   defp deps do
     [
-      {:unicode_guards, "~> 0.1.1"},
+      {:unicode_guards, "~> 0.2.0"},
       {:ex_doc, "~> 0.21.2", only: :dev, runtime: false}
     ]
   end

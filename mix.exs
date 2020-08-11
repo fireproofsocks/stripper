@@ -1,7 +1,7 @@
 defmodule Stripper.MixProject do
   use Mix.Project
 
-  @version "1.1.0"
+  @version "1.2.0"
 
   def project do
     [
@@ -16,8 +16,17 @@ defmodule Stripper.MixProject do
       package: package(),
       docs: [
         source_ref: "v#{@version}",
-        logo: "logo.png"
+        logo: "docs/logo.png",
+        main: "overview",
+        extras: extras()
       ]
+    ]
+  end
+
+  # Extra pages for the docs
+  def extras do
+    [
+      "docs/overview.md"
     ]
   end
 
@@ -29,7 +38,7 @@ defmodule Stripper.MixProject do
       links: links(),
       files: [
         "lib",
-        "logo.png",
+        "docs/logo.png",
         "mix.exs",
         "README*",
         "CHANGELOG*",
@@ -48,7 +57,7 @@ defmodule Stripper.MixProject do
 
   defp deps do
     [
-      {:unicode_guards, "~> 0.2.0"},
+      {:unicode_guards, "~> 0.3.1"},
       {:ex_doc, "~> 0.21.2", only: :dev, runtime: false}
     ]
   end

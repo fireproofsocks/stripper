@@ -40,3 +40,7 @@ end
 ## Contributing
 
 See the [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## Image Attribution
+
+The logo image is "wire strippers" by Designs by MB from the [the Noun Project](https://thenounproject.com/)

@@ -14,6 +14,7 @@ defmodule Stripper.MixProject do
       elixir: "~> 1.9",
       deps: deps(),
       package: package(),
+      elixirc_paths: elixirc_paths(Mix.env()),
       docs: [
         source_ref: "v#{@version}",
         logo: "docs/logo.png",
@@ -22,6 +23,9 @@ defmodule Stripper.MixProject do
       ]
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Extra pages for the docs
   def extras do
@@ -34,7 +38,7 @@ defmodule Stripper.MixProject do
     [
       maintainers: ["Everett Griffiths"],
       licenses: ["Apache 2.0"],
-      logo: "logo.png",
+      logo: "docs/logo.png",
       links: links(),
       files: [
         "lib",
@@ -58,6 +62,7 @@ defmodule Stripper.MixProject do
   defp deps do
     [
       {:unicode_guards, "~> 0.3.1"},
+      {:floki, "~> 0.28.0"},
       {:ex_doc, "~> 0.21.2", only: :dev, runtime: false}
     ]
   end

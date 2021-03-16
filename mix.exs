@@ -57,8 +57,8 @@ defmodule Stripper.MixProject do
 
   defp deps do
     [
-      {:unicode_guards, "~> 0.3.1"},
-      {:ex_doc, "~> 0.21.2", only: :dev, runtime: false}
+      {:unicode_guards, "~> 0.5.0"},
+      {:ex_doc, "~> 0.24.0", runtime: false, optional: true}
     ]
   end
 end

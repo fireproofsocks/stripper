@@ -1,14 +1,14 @@
 defmodule Stripper.MixProject do
   use Mix.Project
 
-  @version "1.3.0"
+  @version "1.3.1"
 
   def project do
     [
       app: :stripper,
       name: "Stripper",
       description:
-        "A package for normalizing input from unpredictable sources (such as web scraping)",
+        "A package for normalizing string input from unpredictable sources (such as web scraping)",
       source_url: "https://github.com/fireproofsocks/stripper",
       version: @version,
       elixir: "~> 1.9",
@@ -57,8 +57,8 @@ defmodule Stripper.MixProject do
 
   defp deps do
     [
-      {:unicode_guards, "~> 0.5.0"},
-      {:ex_doc, "~> 0.24.0", runtime: false, optional: true}
+      {:unicode_guards, "~> 0.5.1"},
+      {:ex_doc, "~> 0.24.0", only: :dev, runtime: false}
     ]
   end
 end

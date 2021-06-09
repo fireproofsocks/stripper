@@ -7,8 +7,8 @@ defmodule Stripper.Parser.FallbackParser do
       defp parse("", acc, _meta), do: acc
 
       # This is the fallback collector: shift the character onto the accumulator and move on
-      defp parse(<<head::utf8, rest::binary>>, acc, meta) do
-        parse(rest, acc <> <<head::utf8>>, meta)
+      defp parse(<<head::binary-size(1), rest::binary>>, acc, meta) do
+        parse(rest, acc <> head, meta)
       end
     end
   end

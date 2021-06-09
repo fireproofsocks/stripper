@@ -8,7 +8,17 @@ defmodule Stripper.Parser.SingleQuoteParser do
   # use-case.
   defmacro __using__(_opts) do
     quote do
-      import Unicode.Guards
+      defguard is_quote_mark_single(char)
+               when is_integer(char) and
+                      (char == 39 or
+                         ((is_integer(char) and (char >= 8216 and char <= 8219)) or
+                            ((is_integer(char) and (char >= 8249 and char <= 8250)) or
+                               ((is_integer(char) and (char >= 10075 and char <= 10076)) or
+                                  ((is_integer(char) and (char >= 12300 and char <= 12303)) or
+                                     ((is_integer(char) and (char >= 65089 and char <= 65092)) or
+                                        (char == 65287 or
+                                           ((is_integer(char) and
+                                               (char >= 65378 and char <= 65379)) or false))))))))
 
       # Some ad-hoc single quote characters not defined by the guard
       defp parse(<<head::utf8, rest::binary>>, acc, meta) when head in ~c[`〈〉『』] do

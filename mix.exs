@@ -1,7 +1,7 @@
 defmodule Stripper.MixProject do
   use Mix.Project
 
-  @version "1.3.1"
+  @version "1.4.0"
 
   def project do
     [
@@ -17,7 +17,7 @@ defmodule Stripper.MixProject do
       docs: [
         source_ref: "v#{@version}",
         logo: "docs/logo.png",
-        main: "overview",
+        main: "readme",
         extras: extras()
       ]
     ]
@@ -26,7 +26,9 @@ defmodule Stripper.MixProject do
   # Extra pages for the docs
   def extras do
     [
-      "docs/overview.md"
+      "README.md",
+      "CHANGELOG.md",
+      "CONTRIBUTING.md"
     ]
   end
 
@@ -57,7 +59,6 @@ defmodule Stripper.MixProject do
 
   defp deps do
     [
-      {:unicode_guards, "~> 0.5.1"},
       {:ex_doc, "~> 0.24.0", only: :dev, runtime: false}
     ]
   end

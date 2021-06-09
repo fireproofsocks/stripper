@@ -21,12 +21,12 @@ defmodule Stripper.Parser.SingleQuoteParser do
 
       # Some ad-hoc single quote characters not defined by the guard
       defp parse(<<head::utf8, rest::binary>>, acc, meta) when head in ~c[`〈〉『』] do
-        parse(rest, acc <> "'", meta)
+        parse(rest, acc <> <<?'>>, meta)
       end
 
       # Single Quote Found! Replace with a plain old single quote
       defp parse(<<head::utf8, rest::binary>>, acc, meta) when is_quote_mark_single(head) do
-        parse(rest, acc <> "'", meta)
+        parse(rest, acc <> <<?'>>, meta)
       end
     end
   end

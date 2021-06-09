@@ -8,7 +8,22 @@ defmodule Stripper.Parser.DoubleQuoteParser do
   # use-case.
   defmacro __using__(_opts) do
     quote do
-      import Unicode.Guards
+      defguard is_quote_mark_double(char)
+               when is_integer(char) and
+                      (char == 34 or
+                         (char == 171 or
+                            (char == 187 or
+                               ((is_integer(char) and (char >= 8220 and char <= 8223)) or
+                                  ((is_integer(char) and (char >= 10077 and char <= 10078)) or
+                                     (char == 10278 or
+                                        (char == 10292 or
+                                           (char == 11842 or
+                                              ((is_integer(char) and
+                                                  (char >= 12317 and char <= 12319)) or
+                                                 (char == 65282 or
+                                                    ((is_integer(char) and
+                                                        (char >= 128_630 and char <= 128_632)) or
+                                                       false)))))))))))
 
       # Some ad-hoc single quote characters not defined by the guard
       defp parse(<<head::utf8, rest::binary>>, acc, meta) when head in ~c[《》「」] do

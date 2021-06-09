@@ -8,7 +8,14 @@ defmodule Stripper.Parser.WhitespaceParser do
   # use-case.
   defmacro __using__(_opts) do
     quote do
-      import Unicode.Guards
+      defguard is_whitespace(char)
+               when is_integer(char) and
+                      ((is_integer(char) and (char >= 9 and char <= 13)) or
+                         (char == 32 or
+                            (char == 160 or
+                               (char == 5760 or
+                                  ((is_integer(char) and (char >= 8192 and char <= 8202)) or
+                                     (char == 8239 or (char == 8287 or (char == 12288 or false))))))))
 
       # Leading spaces... ignore them.
       defp parse(<<head::utf8, rest::binary>>, "", %{in_space: false} = meta)
